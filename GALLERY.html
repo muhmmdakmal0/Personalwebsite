@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Akmal - Photo Gallery</title>
+
+    <style>
+
+/* Add this to your stylesheet */
+.filter-btn {
+    /* Basic button styling */
+    padding: 8px 15px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    /* Style for the currently selected filter */
+    background-color: #333;
+    color: white;
+}
+        /* Base Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        /* --- Top Navigation Bar --- */
+        nav.top-navigation {
+            background-color: #222222;
+            color: white;
+            display: flex;
+            justify-content: flex-start;
+            padding: 5px 20px;
+        }
+
+        nav.top-navigation a, nav.top-navigation div {
+            color: white;
+            padding: 5px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        nav.top-navigation a:hover, nav.top-navigation div:hover {
+            background-color: #3498db;
+
+        }
+        
+        /* Underline effect for active/hover */
+        .main-nav a.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #333;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        /* --- Hero/Introduction Section --- */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin: 0 0 10px 0;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #666;
+            margin: 0;
+        }
+
+        /* --- Category Filter Navigation --- */
+        .filter-nav {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-nav a {
+            text-decoration: none;
+            color: #888;
+            padding: 5px 15px;
+            margin: 0 5px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .filter-nav a.current {
+            color: #00aaff; /* A distinct color for the active filter */
+            font-weight: bold;
+        }
+
+        /* --- Gallery Grid Layout --- */
+        .gallery-container {
+            width: 90%;
+            margin: 0 auto;
+            display: grid;
+            /* Creates a responsive 4-column grid */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 10px; /* Space between images */
+            padding-bottom: 50px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            /* Ensures items maintain a square ratio initially */
+            padding-top: 100%; 
+        }
+
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Important for filling the container without stretching */
+            display: block;
+            transition: transform 1s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        /* Specific item styles for a slightly irregular/masonry look */
+        /* These classes mimic the wider/taller image placements */
+        .w-2 {
+            grid-column: span 2;
+        }
+        .h-2 {
+            /* Sets a taller item by using 2 rows */
+            padding-top: 200%; 
+        }
+
+        /* Hide images initially to be shown by category (if implementing JS filtering) */
+        .hidden {
+            display: none;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <div class="logo">📷 MY GALLERY</div>
+
+         <nav class="top-navigation">
+        <div style="font-style: italic; margin-right: 15px;"></div>
+	<a href="file:///C:/Muhammad%20Akmal%20-%20Personal%20Website/Muhammad%20Akmal%20-%20Personal%20Website.html">HOME</a>
+        <a href="file:///C:/Muhammad%20Akmal%20-%20Personal%20Website/WORK/WORK.html">WORK</a>
+        <a href="file:///C:/Muhammad%20Akmal%20-%20Personal%20Website/EDUCATION/EDUCATION.html">EDUCATION</a>
+        <a href="FAMILY.html">FAMILY</a>
+        <a href="file:///C:/Muhammad%20Akmal%20-%20Personal%20Website/HOBBY/HOBBY.html">HOBBY</a>
+	<a href="file:///C:/Muhammad%20Akmal%20-%20Personal%20Website/GALLERY/GALLERY.html">GALLERY</a>
+    </nav>
+
+
+    </nav>
+
+    </div>
+
+    <div class="hero">
+        <h1>HELLO! WELCOME MY GALLERY.</h1>
+        <p>In this corner, there are many sweet memories and experiences that I can turn into beautiful memories and meaningful lessons in life :3.
+    </div>
+
+    <nav class="filter-nav">
+        <a href="#" class="current" data-category="all">ALL</a> 
+        <a href="#" data-category="scenery">SCENERY</a>
+        <a href="#" data-category="friends">FRIENDS</a>
+        <a href="#" data-category="family">FAMILY</a>
+        <a href="#" data-category="random">RANDOM</a>
+    </nav>
+    
+    <div class="gallery-container">
+
+        <div class="gallery-item" data-category="scenery">
+            <img src="scenery1.jpg" alt="Lake Landscape">
+        </div>
+        <div class="gallery-item w-2" data-category="scenery">
+            <img src="scenery2.jpg" alt="Lakeside">
+        </div>
+        <div class="gallery-item h-2" data-category="scenery">
+            <img src="scenery3.jpg" alt="Mountain">
+	</div>
+ 	<div  class="gallery-item h-2" data-category="scenery">
+            <img src="scenery4.jpg" alt="Gunung Ledang">
+        </div>
+
+        <div class="gallery-item w-2" data-category="friends">
+            <img src="friends1.jpg" alt="Friends laughing at a table">
+        </div>
+        <div class="gallery-item" data-category="friends">
+            <img src="friends2.jpg" alt="Friends taking a selfie">
+        </div>
+        <div class="gallery-item" data-category="friends">
+            <img src="friends3.jpg" alt="Group photo">
+        </div>
+
+        <div class="gallery-item" data-category="family">
+            <img src="family1.jpg" alt="Family dinner">
+        </div>
+        <div class="gallery-item" data-category="family">
+            <img src="family2.jpg" alt="Holding hands">
+        </div>
+        <div class="gallery-item w-2" data-category="family">
+            <img src="family3.jpg" alt="Family trip photo">
+        </div>
+        
+        <div class="gallery-item" data-category="random">
+            <img src="random1.jpg" alt="Close-up of a dog on a surfboard">
+        </div>
+        <div class="gallery-item h-2" data-category="random">
+            <img src="random2.jpg" alt="Coffee beans in a sack">
+        </div>
+        <div class="gallery-item" data-category="random">
+            <img src="random3.jpg" alt="Motorcycle close-up">
+        </div>
+
+        <div class="gallery-item w-2" data-category="random">
+            <img src="random4.jpg" alt="A red sports car">
+        </div>
+        <div class="gallery-item" data-category="random">
+            <img src="random5.jpg" alt="A close up of a hand holding a ring">
+        </div>
+        <div class="gallery-item" data-category="random">
+            <img src="random6.jpg" alt="A piece of fruit">
+        </div>
+        
+    </div>
+
+</body>
+</html>
